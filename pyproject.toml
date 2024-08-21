@@ -1,0 +1,37 @@
+[project]
+name = "app"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "litestar[cryptography,pydantic,redis,sqlalchemy,standard]>=2.7.1",
+    "asyncpg>=0.29.0",
+    "bcrypt>=4.1.2",
+    "pydantic-settings>=2.2.1",
+    "pyrogram>=2.0.106",
+    "tgcrypto>=1.2.5",
+    "minio>=7.2.5",
+]
+
+[tool.pdm.dev-dependencies]
+lint = [
+    "ruff>=0.3.4",
+    "mypy>=1.9.0",
+]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    # Ruff Formatter compatibility
+    "W191", "E111", "E114", "E117", "D206", "D300", "Q000", "Q001", "Q002", "Q003", "COM812", "COM819", "ISC001", "ISC002",
+    # Allow missing docstrings
+    "D1",
+    # Conflicts
+    "D203", "D213",
+    # Other
+    "TD002", "TD003", "FIX002",
+]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
